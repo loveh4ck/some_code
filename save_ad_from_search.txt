@@ -1,0 +1,60 @@
+  var ad_list = [];
+var a = $("#e_idea_pp > li").each(function (i) {
+    var ad_row_id = $(this)[0].id;
+    if (ad_row_id > 100) {
+        var tmp_text = $.trim($(this)[0].innerText);
+        var tmp_url = "";
+        var tmp_row = tmp_text.split("\n");
+        if (tmp_row.length) {
+            var tmp_last_line = tmp_row[tmp_row.length - 1];
+            tmp_url = tmp_last_line.split(/\s/)[0];
+        }
+        var click_url = $("#" + $(this)[0].id + " [e-landurl]").attr("href");
+        var landing_url = $("#" + $(this)[0].id + " [e-landurl]").attr("data-landurl");
+        ad_list.push({ 'url': tmp_url, 'data': tmp_text, 'click_url': click_url, 'landing_url': landing_url });
+    }
+});console.log(ad_list);
+
+----------------------------------------------------------------------
+//360search
+var ad_list = [];
+var a = $("[id^=e_idea_pp] > li").each(function (i) {
+                    var tmp_text = $.trim($(this)[0].innerText);
+                    var tmp_url = "";
+                    var tmp_row = tmp_text.split("\n"); 
+                    for (x in tmp_row){
+                        if (tmp_row[x].search("- 广告") != -1){
+                            var tmp_last_line = tmp_row[x];
+                            tmp_url = tmp_last_line.split(/\s/)[0];}
+                        }
+try{
+var e_landurl = $(this).children("a[e_href]")[0].attributes['e-landurl'].value;
+var click_url = $(this).children("a[e_href]")[0].attributes['e_href'].value;
+ad_list.push({ 'url': tmp_url, 'data': tmp_text, 'click_url': click_url, 'landing_url': e_landurl });
+}
+catch{   
+}
+});
+console.log(ad_list);
+
+--------------------------------------------
+
+//sm
+var ad_list = [];
+var a = $("div[id^=ad]").each(function (i) {
+var tmp_text = $.trim($(this)[0].innerText);
+var tmp_url = "";
+var tmp_row = tmp_text.split("\n");
+if (tmp_row.length) {
+var tmp_last_line = tmp_row[tmp_row.length - 1];
+tmp_url = tmp_last_line.split('广')[0];
+}
+try{
+var e_landurl = $(this).children("a[data-url]")[0].attributes['data-url'].value;
+var click_url = $(this).children("a[data-url]")[0].attributes['href'].value;
+ad_list.push({ 'url': tmp_url, 'data': tmp_text, 'click_url': click_url, 'landing_url': e_landurl });
+}
+catch{   
+}
+});
+console.log(ad_list);
