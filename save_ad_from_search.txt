@@ -58,3 +58,27 @@ catch{
 }
 });
 console.log(ad_list);
+
+-----------------------------------------
+//sougou
+
+var ad_list = [];
+var a = $('.biz_rb ').each(function (i) {
+  var tmp_text =$.trim($(this)[0].innerText);
+  var tmp_url = "";
+    var tmp_row = tmp_text.split("\n"); 
+    for (x in tmp_row){
+        if (tmp_row[x].search("广告") != -1){
+            var tmp_last_line = tmp_row[x];
+            tmp_url = tmp_last_line.split(/\s/)[0];}
+        }
+      try{
+      var click_url = $(this).children("h3").children("a")[0].href;
+    ad_list.push({ 'url': tmp_url, 'data': tmp_text,'click_url': click_url});
+        }catch(e){ console.log(e);  }
+})
+console.log(ad_list);
+
+
+
+.children("h3").children("a")[0].href
