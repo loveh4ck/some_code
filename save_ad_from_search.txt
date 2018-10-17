@@ -40,6 +40,15 @@ console.log(ad_list);
 --------------------------------------------
 
 //sm
+          if(page.$('.show-others')){
+                try{
+                    await page.click('.show-others')
+                    page.waitFor(1000)
+                }catch(e){
+                    console.log(e)
+                }
+            }
+	    //wait the all
 var ad_list = [];
 var a = $("div[id^=ad]").each(function (i) {
 var tmp_text = $.trim($(this)[0].innerText);
